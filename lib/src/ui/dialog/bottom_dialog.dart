@@ -437,7 +437,6 @@ class BottomDialog {
                                   Container(
                                     padding: const EdgeInsets.only(left: 12),
                                     height: 280 * h,
-
                                     child: ListView.builder(
                                       shrinkWrap: true,
                                       scrollDirection: Axis.horizontal,
@@ -447,7 +446,6 @@ class BottomDialog {
                                             data: info[index]);
                                       },
                                     ),
-
                                   ),
                                   SizedBox(
                                     height: 28 * h,
@@ -603,13 +601,13 @@ class BottomDialog {
             return Container(
               height: 304,
               width: MediaQuery.of(context).size.width,
-              margin:  EdgeInsets.symmetric(
-                horizontal: 8*w,
-                vertical: 40*h,
+              margin: EdgeInsets.symmetric(
+                horizontal: 8 * w,
+                vertical: 40 * h,
               ),
               decoration: BoxDecoration(
                 color: AppTheme.white,
-                borderRadius: BorderRadius.circular(18*o),
+                borderRadius: BorderRadius.circular(18 * o),
                 border: Border.all(color: AppTheme.black, width: 1.5),
                 boxShadow: [
                   BoxShadow(
@@ -629,156 +627,166 @@ class BottomDialog {
               child: Column(
                 children: [
                   Container(
-                    margin:  EdgeInsets.only(top: 12*h),
-                    height: 4*h,
-                 width: 60*w,
+                    margin: EdgeInsets.only(top: 12 * h),
+                    height: 4 * h,
+                    width: 60 * w,
                     decoration: BoxDecoration(
                       color: AppTheme.grey,
-                      borderRadius: BorderRadius.circular(100*o),
+                      borderRadius: BorderRadius.circular(100 * o),
                     ),
                   ),
-                   SizedBox(height: 24*h,),
                   SizedBox(
-                    height: 48*h,
+                    height: 24 * h,
+                  ),
+                  SizedBox(
+                    height: 48 * h,
                     width: MediaQuery.of(context).size.width,
                     child: Row(
-
                       children: [
-                         SizedBox(width: 12*w,),
+                        SizedBox(
+                          width: 12 * w,
+                        ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children:  [
-                            Text("ул. Ахмад Даниш 3А",
-                            style: TextStyle(
-                              color: AppTheme.dark,
-                              fontSize: 15*o,
+                          children: [
+                            Text(
+                              "ул. Ахмад Даниш 3А",
+                              style: TextStyle(
+                                color: AppTheme.dark,
+                                fontSize: 15 * o,
+                              ),
                             ),
+                            Text(
+                              "Адрес",
+                              style: TextStyle(
+                                color: AppTheme.grey2,
+                                fontSize: 13 * o,
+                              ),
                             ),
-                             Text("Адрес",
-                            style: TextStyle(
-                              color: AppTheme.grey2,
-                              fontSize: 13*o,
-                            ),
-                            ),
-
                           ],
                         ),
                         const Spacer(),
                         GestureDetector(
-                          onTap: (){
-
-                          },
-
+                          onTap: () {},
                           child: Column(
                             children: [
                               const Spacer(),
-                              SvgPicture.asset("assets/icons/dislike.svg",),
+                              SvgPicture.asset(
+                                "assets/icons/dislike.svg",
+                              ),
                               const Spacer(),
                             ],
                           ),
                         ),
-                         SizedBox(width: 24*w,),
+                        SizedBox(
+                          width: 24 * w,
+                        ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    height: 48*h,
+                    height: 48 * h,
                     width: MediaQuery.of(context).size.width,
                     child: Row(
-
                       children: [
-                         SizedBox(width: 12*w,),
+                        SizedBox(
+                          width: 12 * w,
+                        ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children:  [
-                            Text("08:00 - 22:00",
-                            style: TextStyle(
-                              color: AppTheme.dark,
-                              fontSize: 15*o,
+                          children: [
+                            Text(
+                              "08:00 - 22:00",
+                              style: TextStyle(
+                                color: AppTheme.dark,
+                                fontSize: 15 * o,
+                              ),
                             ),
+                            Text(
+                              "Режим работы",
+                              style: TextStyle(
+                                color: AppTheme.grey2,
+                                fontSize: 13 * o,
+                              ),
                             ),
-                             Text("Режим работы",
-                            style: TextStyle(
-                              color: AppTheme.grey2,
-                              fontSize: 13*o,
-                            ),
-                            ),
-
                           ],
                         ),
                         const Spacer(),
-
-                         SizedBox(width: 24*w,),
+                        SizedBox(
+                          width: 24 * w,
+                        ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    height: 48*h,
+                    height: 48 * h,
                     width: MediaQuery.of(context).size.width,
                     child: Row(
-
                       children: [
-                         SizedBox(width: 12*w,),
+                        SizedBox(
+                          width: 12 * w,
+                        ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children:  [
-                            Text("+998 99 004 84 82",
-                            style: TextStyle(
-                              color: AppTheme.dark,
-                              fontSize: 15*o,
+                          children: [
+                            Text(
+                              "+998 99 004 84 82",
+                              style: TextStyle(
+                                color: AppTheme.dark,
+                                fontSize: 15 * o,
+                              ),
                             ),
+                            Text(
+                              "Телефон",
+                              style: TextStyle(
+                                color: AppTheme.grey2,
+                                fontSize: 13 * o,
+                              ),
                             ),
-                             Text("Телефон",
-                            style: TextStyle(
-                              color: AppTheme.grey2,
-                              fontSize: 13*o,
-                            ),
-                            ),
-
                           ],
                         ),
                         const Spacer(),
-
-                         SizedBox(width: 24*w,),
+                        SizedBox(
+                          width: 24 * w,
+                        ),
                       ],
                     ),
                   ),
-const Spacer(),
-
-
-
-GestureDetector(
-
-  onTap:  (){
-    Navigator.push(context, MaterialPageRoute(builder: (context){
-      return const SelfCallAfterScreen();
-
-
-
-    }),);
-  },
-  child: Container(height: 44*h,
-    width: MediaQuery.of(context).size.width,
-    margin:  EdgeInsets.symmetric(horizontal: 16*w),
-    decoration: BoxDecoration(
-      color: AppTheme.blue,
-      borderRadius: BorderRadius.circular(10*o),
-    ),
-    child:  Center(
-      child: Text("Забрать отсюда",
-        style: TextStyle(
-          color: AppTheme.white,
-          fontSize: 17*o,
-        ),
-      ),
-    ),
-  ),
-),
-
-                   SizedBox(height: 20*h,),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return const SelfCallAfterScreen();
+                        }),
+                      );
+                    },
+                    child: Container(
+                      height: 44 * h,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 16 * w),
+                      decoration: BoxDecoration(
+                        color: AppTheme.blue,
+                        borderRadius: BorderRadius.circular(10 * o),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Забрать отсюда",
+                          style: TextStyle(
+                            color: AppTheme.white,
+                            fontSize: 17 * o,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20 * h,
+                  ),
                 ],
               ),
             );
@@ -788,143 +796,150 @@ GestureDetector(
     );
   }
 
-
-
   // ignore: non_constant_identifier_names
   static Future<void> PayDialog(
-      BuildContext context,
-      ) async {
-    showModalBottomSheet(context: context,
+    BuildContext context,
+  ) async {
+    showModalBottomSheet(
+        context: context,
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
-        builder: (context){
-        return StatefulBuilder(builder: (context, setState){
-          double h = Utils.windowHeight(context);
-          double w = Utils.windowWidth(context);
-          double o = (h + w) / 2;
-          return Container(
-            margin:  EdgeInsets.symmetric(vertical: 42*h, horizontal: 8*w,),
-height: 420*h,
-width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: AppTheme.white,
-              borderRadius: BorderRadius.circular(18*o),
-
-            ),
-            child: Column(
-              children: [
-                Container(
-                  margin:  EdgeInsets.only(top: 12*h),
-                  height: 4*h,
-                  width: 60*w,
-                  decoration: BoxDecoration(
-                    color: AppTheme.grey,
-                    borderRadius: BorderRadius.circular(100*o),
-                  ),
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              double h = Utils.windowHeight(context);
+              double w = Utils.windowWidth(context);
+              double o = (h + w) / 2;
+              return Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: 42 * h,
+                  horizontal: 8 * w,
                 ),
-                 SizedBox(height: 16*h,),
-                Image.asset("assets/images/done1.png",
-                height: 152*h,
-                  width: 152*w,
+                height: 420 * h,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: AppTheme.white,
+                  borderRadius: BorderRadius.circular(18 * o),
                 ),
-                SizedBox(height: 8*h,),
-                 Text("Ваш заказ оформлен",
-                style: TextStyle(
-                  color: AppTheme.dark,
-                  fontSize: 17*o,
-                  fontWeight: FontWeight.bold,
-                ),
-                ),
-                 SizedBox(height: 8*h,),
-                Container(
-                  height: 54*h,
-                  width: MediaQuery.of(context).size.width,
-                  margin:  EdgeInsets.symmetric(horizontal: 64*w),
-
-                  child:  Text("Изменение статуса заказа вы можетеотслижовать в вашем профиле",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-
-                    color: AppTheme.grey2,
-                    fontSize: 13*o,
-                  ),
-                  ),
-                ),
-
-
-                 SizedBox(height: 8*h,),
-
-                GestureDetector(
-
-
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-
-
-                      return   const OrderScreen();
-                    }),);
-                  },
-                  child: Container(
-                    height: 44*h,
-                    width: MediaQuery.of(context).size.width,
-                    margin:  EdgeInsets.symmetric(horizontal: 16*w),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10*o),
-                      border: Border.all(color: AppTheme.blue3,width: 1,
-
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 12 * h),
+                      height: 4 * h,
+                      width: 60 * w,
+                      decoration: BoxDecoration(
+                        color: AppTheme.grey,
+                        borderRadius: BorderRadius.circular(100 * o),
                       ),
-
                     ),
-                    child:  Center(
-                      child: Text("Посмотреть детали заказа",
+                    SizedBox(
+                      height: 16 * h,
+                    ),
+                    Image.asset(
+                      "assets/images/done1.png",
+                      height: 152 * h,
+                      width: 152 * w,
+                    ),
+                    SizedBox(
+                      height: 8 * h,
+                    ),
+                    Text(
+                      "Ваш заказ оформлен",
+                      style: TextStyle(
+                        color: AppTheme.dark,
+                        fontSize: 17 * o,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8 * h,
+                    ),
+                    Container(
+                      height: 54 * h,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 64 * w),
+                      child: Text(
+                        "Изменение статуса заказа вы можетеотслижовать в вашем профиле",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          color: AppTheme.blue3,
-                          fontSize: 17*o,
+                          color: AppTheme.grey2,
+                          fontSize: 13 * o,
                         ),
                       ),
                     ),
-                  ),
-                ),
-
-                 SizedBox(height: 20*h,),
-                GestureDetector(onTap: (){
-                  Navigator.pop(context);
-                },
-
-
-                child: Container(
-                  height: 44*h,
-                  width: MediaQuery.of(context).size.width,
-                  margin:  EdgeInsets.symmetric(horizontal: 16*w),
-                  decoration: BoxDecoration(
-                    color: AppTheme.blue3,
-                    borderRadius: BorderRadius.circular(10*o),
-                    border: Border.all(color: AppTheme.blue3,width: 1,
-
+                    SizedBox(
+                      height: 8 * h,
                     ),
-
-                  ),
-                  child:  Center(
-                    child: Text("Закрыть",
-                      style: TextStyle(
-                        color: AppTheme.white,
-                        fontSize: 17*o,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return const OrderScreen();
+                          }),
+                        );
+                      },
+                      child: Container(
+                        height: 44 * h,
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 16 * w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10 * o),
+                          border: Border.all(
+                            color: AppTheme.blue3,
+                            width: 1,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Посмотреть детали заказа",
+                            style: TextStyle(
+                              color: AppTheme.blue3,
+                              fontSize: 17 * o,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    SizedBox(
+                      height: 20 * h,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        height: 44 * h,
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 16 * w),
+                        decoration: BoxDecoration(
+                          color: AppTheme.blue3,
+                          borderRadius: BorderRadius.circular(10 * o),
+                          border: Border.all(
+                            color: AppTheme.blue3,
+                            width: 1,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Закрыть",
+                            style: TextStyle(
+                              color: AppTheme.white,
+                              fontSize: 17 * o,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20 * h,
+                    ),
+                  ],
                 ),
-                ),
-
-                 SizedBox(height: 20*h,),
-
-              ],
-            ),
+              );
+            },
           );
-
-        },
-        );
-
         });
   }
 }
