@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pharmacy/src/Utils/utils.dart';
 import 'package:pharmacy/src/app_theme/app_thema.dart';
 import 'package:pharmacy/src/bloc/search_bloc.dart';
@@ -51,7 +51,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Row(
             children: [
               Container(
-                height: 36,
+                padding: EdgeInsets.only(right: 16 * w),
                 width: 250 * w,
                 margin: EdgeInsets.only(
                   left: 12 * w,
@@ -104,8 +104,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
               ),
-               SizedBox(
-                width: 12*w,
+              SizedBox(
+                width: 12 * w,
               ),
             ],
           ),
@@ -121,22 +121,38 @@ class _SearchScreenState extends State<SearchScreen> {
                     ],
                   )
                 : StreamBuilder(
-                  stream: searchBloc.getSearchInfo,
-                  builder: (context, AsyncSnapshot<DrugsModel> snapshot) {
-                    if (snapshot.hasData) {
-                      return ListView.builder(
+                    stream: searchBloc.getSearchInfo,
+                    builder: (context, AsyncSnapshot<DrugsModel> snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
                           itemCount: snapshot.data!.results.length,
                           itemBuilder: (context, index) {
                             return Container(
-                              padding: EdgeInsets.all(24*o),
-                              child:
-                                  Text(snapshot.data!.results[index].name),
+                              padding: EdgeInsets.all(24 * o),
+                              child: Text(snapshot.data!.results[index].name),
                             );
-                          });
-                    }
-                    return Container();
-                  },
-                ),
+                          },
+                        );
+                      }
+                      return Column(
+                        children: [
+                          const Spacer(),
+                          Row(
+                            children: [
+                              const Spacer(),
+                              Lottie.asset(
+                                "assets/lottie_files/box.json",
+                                height: 300 * o,
+                                width: 300 * o,
+                              ),
+                              const Spacer(),
+                            ],
+                          ),
+                          const Spacer(),
+                        ],
+                      );
+                    },
+                  ),
           ),
         ],
       ),

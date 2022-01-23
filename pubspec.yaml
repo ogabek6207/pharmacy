@@ -10,6 +10,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  lottie: ^1.2.1
   flutter_localizations:
     sdk: flutter
   flutter_translate: ^3.0.1
@@ -50,4 +51,6 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/i18n/
+    - assets/lottie_files/
 

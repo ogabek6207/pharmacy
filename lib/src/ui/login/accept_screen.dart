@@ -69,26 +69,25 @@ class _PostRequestScreenState extends State<AcceptScreen> {
               color: Colors.black.withOpacity(0.12),
               borderRadius: BorderRadius.circular(10 * o),
             ),
-            child: Expanded(
-              child: TextField(
-                controller: _controller,
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ],
-                maxLength: 4,
-                decoration: const InputDecoration(
-                  counterText: "",
-                  hintText: "Код подтверждения",
-                  border: InputBorder.none,
-                ),
+            child: TextField(
+              controller: _controller,
+              autofocus: true,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              maxLength: 4,
+              decoration: const InputDecoration(
+                counterText: "",
+                hintText: "Код подтверждения",
+                border: InputBorder.none,
               ),
             ),
           ),
-          const Spacer(),
           SizedBox(
             height: 13 * h,
           ),
+          Spacer(),
           GestureDetector(
             onTap: () {
               _senData(
