@@ -91,7 +91,7 @@ class _PaymentCardScreenState extends State<PaymentCardScreen> {
           GestureDetector(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context){
-                return const AddCardScreen();
+                return  const AddCardScreen(name: "Добавить карту",);
               }),);
             },
             child:  Container(height: 36*h,
