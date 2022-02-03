@@ -22,6 +22,7 @@ class HomeBloc {
   Stream<List<DrugsResult>> get fetchCardDrugs => drugsCardFetch.stream;
 
   Stream<List<DrugsResult>> get fetchFavDrugs => drugsFavFetch.stream;
+
   getSales() async {
     var response = await _repository.getSales();
     if (response.isSucces) {
@@ -43,7 +44,7 @@ class HomeBloc {
   ///fav
   getDrugsFav() async {
     List<DrugsResult> database = await _repository.getFavProduct();
-    drugsCardFetch.sink.add(database);
+    drugsFavFetch.sink.add(database);
   }
 
   getDrugs() async {

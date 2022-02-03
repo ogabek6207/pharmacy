@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pharmacy/src/Utils/utils.dart';
 import 'package:pharmacy/src/app_theme/app_thema.dart';
 import 'package:pharmacy/src/bloc/home_bloc.dart';
@@ -67,9 +68,23 @@ class _CardScreenState extends State<CardScreen> {
               ),
             ),
             body: drugsRersult.isEmpty
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
+                ? Column(
+              children: [
+                const Spacer(),
+                Row(
+                  children: [
+                    const Spacer(),
+                    Lottie.asset(
+                      "assets/lottie_files/box.json",
+                      height: 300 * o,
+                      width: 300 * o,
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+                const Spacer(),
+              ],
+            )
                 : ListView(
                     children: [
                       Column(

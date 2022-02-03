@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pharmacy/src/Utils/utils.dart';
 import 'package:pharmacy/src/app_theme/app_thema.dart';
 import 'package:pharmacy/src/bloc/home_bloc.dart';
@@ -30,8 +31,29 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
       stream: homeBloc.fetchFavDrugs,
       builder: (context, AsyncSnapshot<List<DrugsResult>> snapshot) {
         if (snapshot.hasData) {
-          List<DrugsResult> drugsRersult = snapshot.data!;
-          return Scaffold(
+          List<DrugsResult> drugsResult = snapshot.data!;
+          print(drugsResult.length);
+          return
+
+            drugsResult.isEmpty ? Column(
+              children: [
+                const Spacer(),
+                Row(
+                  children: [
+                    const Spacer(),
+                    Lottie.asset(
+                      "assets/lottie_files/box.json",
+                      height: 300 * o,
+                      width: 300 * o,
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+                const Spacer(),
+              ],
+            ) :
+
+            Scaffold(
             appBar: AppBar(
               elevation: 1,
               backgroundColor: AppTheme.white,
@@ -47,7 +69,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                       ),
                     ),
                     Text(
-                      drugsRersult.length.toString() + " товаров",
+                      drugsResult.length.toString() + " товаров",
                       style: TextStyle(
                         color: AppTheme.grey2,
                         fontSize: 13 * o,
@@ -60,7 +82,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
             backgroundColor: AppTheme.white,
             body: ListView(
               children: [
-                drugsRersult.isEmpty
+                drugsResult.isEmpty
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -84,7 +106,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         scrollDirection: Axis.vertical,
-                        itemCount: drugsRersult.length,
+                        itemCount: drugsResult.length,
                         itemBuilder: (context, index) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,9 +124,9 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                     child: Stack(
                                       children: [
                                         CachedNetworkImage(
-                                          imageUrl: drugsRersult[index].image,
+                                          imageUrl: drugsResult[index].image,
                                         ),
-                                        drugsRersult[index].basePrice != 0
+                                        drugsResult[index].basePrice != 0
                                             ? Positioned(
                                                 top: 0,
                                                 right: 0,
@@ -123,13 +145,13 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                   child: Center(
                                                     child: Text(
                                                       "-" +
-                                                          ((drugsRersult[index]
+                                                          ((drugsResult[index]
                                                                           .basePrice -
-                                                              drugsRersult[
+                                                              drugsResult[
                                                                               index]
                                                                           .price) *
                                                                   100 ~/
-                                                              drugsRersult[
+                                                              drugsResult[
                                                                           index]
                                                                       .basePrice)
                                                               .toString() +
@@ -154,7 +176,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                         SizedBox(
                                           width: 183 * w,
                                           child: Text(
-                                            drugsRersult[index].name,
+                                            drugsResult[index].name,
                                             style: TextStyle(
                                               color: const Color(0xFF1C1C1E),
                                               fontWeight: FontWeight.bold,
@@ -166,7 +188,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                           height: 4 * o,
                                         ),
                                         Text(
-                                          drugsRersult[index].description,
+                                          drugsResult[index].description,
                                           style: TextStyle(
                                             color: AppTheme.grey2,
                                             fontSize: 12 * o,
@@ -180,16 +202,16 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                         ),
                                         Row(
                                           children: [
-                                            Text(drugsRersult[index]
+                                            Text(drugsResult[index]
                                                     .price
                                                     .toString() +
                                                 " sum"),
                                             SizedBox(
                                               width: 12 * w,
                                             ),
-                                            drugsRersult[index].basePrice != 0
+                                            drugsResult[index].basePrice != 0
                                                 ? Text(
-                                              drugsRersult[index]
+                                              drugsResult[index]
                                                             .basePrice
                                                             .toString() +
                                                         " sum",
@@ -206,11 +228,11 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                         ),
                                         Row(
                                           children: [
-                                            drugsRersult[index].cardCount == 0
+                                            drugsResult[index].cardCount == 0
                                                 ? GestureDetector(
                                                     onTap: () {
                                                       setState(() {
-                                                        drugsRersult[index]
+                                                        drugsResult[index]
                                                             .cardCount = 1;
                                                       });
                                                     },
@@ -265,7 +287,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                         GestureDetector(
                                                           onTap: () {
                                                             setState(() {
-                                                              drugsRersult[index]
+                                                              drugsResult[index]
                                                                   .cardCount--;
                                                             });
                                                           },
@@ -292,7 +314,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                         const Spacer(),
                                                         Center(
                                                           child: Text(
-                                                            drugsRersult[index]
+                                                            drugsResult[index]
                                                                     .cardCount
                                                                     .toString() +
                                                                 " шт.",
@@ -310,7 +332,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                         GestureDetector(
                                                           onTap: () {
                                                             setState(() {
-                                                              drugsRersult[index]
+                                                              drugsResult[index]
                                                                   .cardCount++;
                                                             });
                                                           },
@@ -340,14 +362,14 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                             GestureDetector(
                                               onTap: () {
                                                 setState(() {
-                                                  drugsRersult[index]
+                                                  drugsResult[index]
                                                           .favSelected =
-                                                      !drugsRersult[index]
+                                                      !drugsResult[index]
                                                           .favSelected;
                                                 });
                                               },
                                               child:
-                                              drugsRersult[index].favSelected
+                                              drugsResult[index].favSelected
                                                       ? SvgPicture.asset(
                                                           "assets/icons/like.svg",
                                                           height: 24 * o,
