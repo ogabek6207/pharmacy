@@ -33,203 +33,210 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
         if (snapshot.hasData) {
           List<DrugsResult> drugsResult = snapshot.data!;
           print(drugsResult.length);
-          return
-
-            drugsResult.isEmpty ? Column(
-              children: [
-                const Spacer(),
-                Row(
+          return drugsResult.isEmpty
+              ? Column(
                   children: [
                     const Spacer(),
-                    Lottie.asset(
-                      "assets/lottie_files/box.json",
-                      height: 300 * o,
-                      width: 300 * o,
+                    Row(
+                      children: [
+                        const Spacer(),
+                        Lottie.asset(
+                          "assets/lottie_files/box.json",
+                          height: 300 * o,
+                          width: 300 * o,
+                        ),
+                        const Spacer(),
+                      ],
                     ),
                     const Spacer(),
                   ],
-                ),
-                const Spacer(),
-              ],
-            ) :
-
-            Scaffold(
-            appBar: AppBar(
-              elevation: 1,
-              backgroundColor: AppTheme.white,
-              title: SizedBox(
-                height: 44 * h,
-                child: Column(
-                  children: [
-                    Text(
-                      "Лучшие предложения",
-                      style: TextStyle(
-                        color: AppTheme.dark,
-                        fontSize: 17 * o,
-                      ),
-                    ),
-                    Text(
-                      drugsResult.length.toString() + " товаров",
-                      style: TextStyle(
-                        color: AppTheme.grey2,
-                        fontSize: 13 * o,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            backgroundColor: AppTheme.white,
-            body: ListView(
-              children: [
-                drugsResult.isEmpty
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                )
+              : Scaffold(
+                  appBar: AppBar(
+                    elevation: 1,
+                    backgroundColor: AppTheme.white,
+                    title: SizedBox(
+                      height: 44 * h,
+                      child: Column(
                         children: [
-                          Center(
-                              child: Column(
-                            children: [
-                              const Spacer(),
-                              Row(
-                                children: const [
-                                  Spacer(),
-                                  CircularProgressIndicator(),
-                                  Spacer(),
-                                ],
-                              ),
-                              const Spacer(),
-                            ],
-                          )),
+                          Text(
+                            "Лучшие предложения",
+                            style: TextStyle(
+                              color: AppTheme.dark,
+                              fontSize: 17 * o,
+                            ),
+                          ),
+                          Text(
+                            drugsResult.length.toString() + " товаров",
+                            style: TextStyle(
+                              color: AppTheme.grey2,
+                              fontSize: 13 * o,
+                            ),
+                          ),
                         ],
-                      )
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: drugsResult.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 18 * h),
-                              Row(
-                                children: [
-                                  Container(
-                                    height: 140 * o,
-                                    width: 140 * o,
-                                    decoration: const BoxDecoration(
-                                      color: AppTheme.white,
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        CachedNetworkImage(
-                                          imageUrl: drugsResult[index].image,
-                                        ),
-                                        drugsResult[index].basePrice != 0
-                                            ? Positioned(
-                                                top: 0,
-                                                right: 0,
-                                                child: Container(
-                                                  height: 18 * h,
-                                                  width: 42 * w,
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 4 * w,
-                                                      vertical: 2 * h),
-                                                  decoration: BoxDecoration(
-                                                    color: AppTheme.red,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            9 * 0),
-                                                  ),
-                                                  child: Center(
-                                                    child: Text(
-                                                      "-" +
-                                                          ((drugsResult[index]
-                                                                          .basePrice -
-                                                              drugsResult[
-                                                                              index]
-                                                                          .price) *
-                                                                  100 ~/
-                                                              drugsResult[
-                                                                          index]
-                                                                      .basePrice)
-                                                              .toString() +
-                                                          "%",
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            : Container(),
+                      ),
+                    ),
+                  ),
+                  backgroundColor: AppTheme.white,
+                  body: ListView(
+                    children: [
+                      drugsResult.isEmpty
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Center(
+                                    child: Column(
+                                  children: [
+                                    const Spacer(),
+                                    Row(
+                                      children: const [
+                                        Spacer(),
+                                        CircularProgressIndicator(),
+                                        Spacer(),
                                       ],
                                     ),
-                                  ),
-                                  SizedBox(width: 12 * w),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                    const Spacer(),
+                                  ],
+                                )),
+                              ],
+                            )
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              itemCount: drugsResult.length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 18 * h),
+                                    Row(
                                       children: [
-                                        SizedBox(
-                                          height: 12 * h,
-                                        ),
-                                        SizedBox(
-                                          width: 183 * w,
-                                          child: Text(
-                                            drugsResult[index].name,
-                                            style: TextStyle(
-                                              color: const Color(0xFF1C1C1E),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13 * o,
-                                            ),
+                                        Container(
+                                          height: 140 * o,
+                                          width: 140 * o,
+                                          decoration: const BoxDecoration(
+                                            color: AppTheme.white,
+                                          ),
+                                          child: Stack(
+                                            children: [
+                                              CachedNetworkImage(
+                                                imageUrl:
+                                                    drugsResult[index].image,
+                                              ),
+                                              drugsResult[index].basePrice != 0
+                                                  ? Positioned(
+                                                      top: 0,
+                                                      right: 0,
+                                                      child: Container(
+                                                        height: 18 * h,
+                                                        width: 42 * w,
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    4 * w,
+                                                                vertical:
+                                                                    2 * h),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: AppTheme.red,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      9 * 0),
+                                                        ),
+                                                        child: Center(
+                                                          child: Text(
+                                                            "-" +
+                                                                ((drugsResult[index].basePrice -
+                                                                            drugsResult[index]
+                                                                                .price) *
+                                                                        100 ~/
+                                                                        drugsResult[index]
+                                                                            .basePrice)
+                                                                    .toString() +
+                                                                "%",
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : Container(),
+                                            ],
                                           ),
                                         ),
-                                        SizedBox(
-                                          height: 4 * o,
-                                        ),
-                                        Text(
-                                          drugsResult[index].description,
-                                          style: TextStyle(
-                                            color: AppTheme.grey2,
-                                            fontSize: 12 * o,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        SizedBox(
-                                          height: 11 * h,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(drugsResult[index]
-                                                    .price
-                                                    .toString() +
-                                                " sum"),
-                                            SizedBox(
-                                              width: 12 * w,
-                                            ),
-                                            drugsResult[index].basePrice != 0
-                                                ? Text(
-                                              drugsResult[index]
-                                                            .basePrice
-                                                            .toString() +
-                                                        " sum",
-                                                    style: const TextStyle(
-                                                      decoration: TextDecoration
-                                                          .lineThrough,
-                                                    ),
-                                                  )
-                                                : Container(),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 12 * h,
-                                        ),
-                                        Row(
-                                          children: [
-                                            drugsResult[index].cardCount == 0
-                                                ? GestureDetector(
+                                        SizedBox(width: 12 * w),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                height: 12 * h,
+                                              ),
+                                              SizedBox(
+                                                width: 183 * w,
+                                                child: Text(
+                                                  drugsResult[index].name,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xFF1C1C1E),
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 13 * o,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 4 * o,
+                                              ),
+                                              Text(
+                                                drugsResult[index].description,
+                                                style: TextStyle(
+                                                  color: AppTheme.grey2,
+                                                  fontSize: 12 * o,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                              SizedBox(
+                                                height: 11 * h,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(drugsResult[index]
+                                                          .price
+                                                          .toString() +
+                                                      " sum"),
+                                                  SizedBox(
+                                                    width: 12 * w,
+                                                  ),
+                                                  drugsResult[index]
+                                                              .basePrice !=
+                                                          0
+                                                      ? Text(
+                                                          drugsResult[index]
+                                                                  .basePrice
+                                                                  .toString() +
+                                                              " sum",
+                                                          style:
+                                                              const TextStyle(
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .lineThrough,
+                                                          ),
+                                                        )
+                                                      : Container(),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 12 * h,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  drugsResult[index].cardCount ==
+                                                      0
+                                                      ? GestureDetector(
                                                     onTap: () {
                                                       setState(() {
                                                         drugsResult[index]
@@ -239,26 +246,30 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                     child: Container(
                                                       height: 30 * h,
                                                       width: 120 * w,
-                                                      margin: EdgeInsets.only(
+                                                      margin:
+                                                      EdgeInsets.only(
                                                           left: 5 * w),
-                                                      decoration: BoxDecoration(
-                                                        color: AppTheme.blue,
+                                                      decoration:
+                                                      BoxDecoration(
+                                                        color:
+                                                        AppTheme.blue,
                                                         borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    10 * o),
+                                                        BorderRadius
+                                                            .circular(
+                                                            10 * o),
                                                       ),
                                                       child: Row(
                                                         crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
+                                                        CrossAxisAlignment
+                                                            .center,
                                                         mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                         children: [
                                                           const Text(
                                                             "add to cart",
-                                                            style: TextStyle(
+                                                            style:
+                                                            TextStyle(
                                                               color: AppTheme
                                                                   .white,
                                                             ),
@@ -272,39 +283,43 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                       ),
                                                     ),
                                                   )
-                                                : Container(
-                                                    height: 30,
-                                                    width: 120,
-                                                    decoration: BoxDecoration(
+                                                      : Container(
+                                                    height: 30 * h,
+                                                    width: 120 * w,
+                                                    decoration:
+                                                    BoxDecoration(
                                                       color: AppTheme.blue
                                                           .withOpacity(0.1),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10 * o),
+                                                      BorderRadius
+                                                          .circular(
+                                                          10 * o),
                                                     ),
                                                     child: Row(
                                                       children: [
                                                         GestureDetector(
                                                           onTap: () {
                                                             setState(() {
-                                                              drugsResult[index]
+                                                              drugsResult[
+                                                              index]
                                                                   .cardCount--;
                                                             });
                                                           },
                                                           child: Container(
-                                                            height: 26 * h,
-                                                            width: 26 * w,
+                                                            height: 26 * o,
+                                                            width: 26 * o,
                                                             decoration:
-                                                                BoxDecoration(
+                                                            BoxDecoration(
                                                               color:
-                                                                  AppTheme.blue,
+                                                              AppTheme
+                                                                  .blue,
                                                               borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10 *
-                                                                              o),
+                                                              BorderRadius
+                                                                  .circular(10 *
+                                                                  o),
                                                             ),
-                                                            child: const Icon(
+                                                            child:
+                                                            const Icon(
                                                               Icons.remove,
                                                               color: AppTheme
                                                                   .white,
@@ -314,17 +329,21 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                         const Spacer(),
                                                         Center(
                                                           child: Text(
-                                                            drugsResult[index]
-                                                                    .cardCount
-                                                                    .toString() +
+                                                            drugsResult[
+                                                            index]
+                                                                .cardCount
+                                                                .toString() +
                                                                 " шт.",
-                                                            style: TextStyle(
+                                                            style:
+                                                            TextStyle(
                                                               color:
-                                                                  AppTheme.blue,
+                                                              AppTheme
+                                                                  .blue,
                                                               fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 15 * o,
+                                                              FontWeight
+                                                                  .bold,
+                                                              fontSize:
+                                                              15 * o,
                                                             ),
                                                           ),
                                                         ),
@@ -332,7 +351,8 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                         GestureDetector(
                                                           onTap: () {
                                                             setState(() {
-                                                              drugsResult[index]
+                                                              drugsResult[
+                                                              index]
                                                                   .cardCount++;
                                                             });
                                                           },
@@ -340,64 +360,62 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                             height: 26 * o,
                                                             width: 26 * o,
                                                             decoration:
-                                                                BoxDecoration(
+                                                            BoxDecoration(
                                                               color:
-                                                                  AppTheme.blue,
+                                                              AppTheme
+                                                                  .blue,
                                                               borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
+                                                              BorderRadius
+                                                                  .circular(10 *
+                                                                  o),
                                                             ),
-                                                            child: const Icon(
+                                                            child:
+                                                            const Icon(
                                                               Icons.add,
-                                                              color:
-                                                                  Colors.white,
+                                                              color: Colors
+                                                                  .white,
                                                             ),
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
-                                            const Spacer(),
-                                            GestureDetector(
-                                              onTap: () {
-                                                setState(() {
-                                                  drugsResult[index]
-                                                          .favSelected =
-                                                      !drugsResult[index]
-                                                          .favSelected;
-                                                });
-                                              },
-                                              child:
-                                              drugsResult[index].favSelected
-                                                      ? SvgPicture.asset(
-                                                          "assets/icons/like.svg",
-                                                          height: 24 * o,
-                                                          width: 24 * o,
-                                                        )
-                                                      : SvgPicture.asset(
-                                                          "assets/icons/dislike.svg",
-                                                          height: 24 * o,
-                                                          width: 24 * o,
-                                                        ),
-                                            ),
-                                            SizedBox(
-                                              width: 17 * w,
-                                            ),
-                                          ],
+                                                  const Spacer(),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      drugsResult[index].favSelected = !drugsResult[index].favSelected;
+                                                      homeBloc.updateFavDrugs(drugsResult[index], drugsResult[index].favSelected);
+                                                    },
+                                                    child:
+                                                    drugsResult[index].favSelected
+                                                        ? SvgPicture.asset(
+                                                      "assets/icons/like.svg",
+                                                      height: 24 * o,
+                                                      width: 24 * o,
+                                                    )
+                                                        : SvgPicture.asset(
+                                                      "assets/icons/dislike.svg",
+                                                      height: 24 * o,
+                                                      width: 24 * o,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 17 * w,
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-              ],
-            ),
-          );
+                                  ],
+                                );
+                              },
+                            ),
+                    ],
+                  ),
+                );
         }
         return Shimmer.fromColors(
           baseColor: AppTheme.shimmerBaseColor,

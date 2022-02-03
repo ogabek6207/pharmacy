@@ -168,7 +168,7 @@ class _CardScreenState extends State<CardScreen> {
                                                 drugsRersult[index].name,
                                                 style: TextStyle(
                                                   color:
-                                                      const Color(0xFF1C1C1E),
+                                                      AppTheme.dark,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 13 * o,
                                                 ),
@@ -285,30 +285,19 @@ class _CardScreenState extends State<CardScreen> {
                                                           children: [
                                                             GestureDetector(
                                                               onTap: () {
-                                                                setState(() {
-                                                                  drugsRersult[
-                                                                          index]
-                                                                      .cardCount--;
-                                                                });
+                                                                drugsRersult[index].cardCount--;
+                                                                homeBloc.updateCardDrugs(drugsRersult[index]);
                                                               },
                                                               child: Container(
-                                                                height: 26 * o,
-                                                                width: 26 * o,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color:
-                                                                      AppTheme
-                                                                          .blue,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(10 *
-                                                                              o),
+                                                                height: 26,
+                                                                width: 26,
+                                                                decoration: BoxDecoration(
+                                                                  color: Colors.blue,
+                                                                  borderRadius: BorderRadius.circular(10),
                                                                 ),
-                                                                child:
-                                                                    const Icon(
+                                                                child: const Icon(
                                                                   Icons.remove,
-                                                                  color: AppTheme
-                                                                      .white,
+                                                                  color: Colors.white,
                                                                 ),
                                                               ),
                                                             ),
@@ -336,30 +325,19 @@ class _CardScreenState extends State<CardScreen> {
                                                             const Spacer(),
                                                             GestureDetector(
                                                               onTap: () {
-                                                                setState(() {
-                                                                  drugsRersult[
-                                                                          index]
-                                                                      .cardCount++;
-                                                                });
+                                                                drugsRersult[index].cardCount++;
+                                                                homeBloc.updateCardDrugs(drugsRersult[index]);
                                                               },
                                                               child: Container(
-                                                                height: 26 * o,
-                                                                width: 26 * o,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color:
-                                                                      AppTheme
-                                                                          .blue,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(10 *
-                                                                              o),
+                                                                height: 26,
+                                                                width: 26,
+                                                                decoration: BoxDecoration(
+                                                                  color: Colors.blue,
+                                                                  borderRadius: BorderRadius.circular(10),
                                                                 ),
-                                                                child:
-                                                                    const Icon(
+                                                                child: const Icon(
                                                                   Icons.add,
-                                                                  color: Colors
-                                                                      .white,
+                                                                  color: Colors.white,
                                                                 ),
                                                               ),
                                                             ),
