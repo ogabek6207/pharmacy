@@ -69,22 +69,22 @@ class _CardScreenState extends State<CardScreen> {
             ),
             body: drugsRersult.isEmpty
                 ? Column(
-              children: [
-                const Spacer(),
-                Row(
-                  children: [
-                    const Spacer(),
-                    Lottie.asset(
-                      "assets/lottie_files/box.json",
-                      height: 300 * o,
-                      width: 300 * o,
-                    ),
-                    const Spacer(),
-                  ],
-                ),
-                const Spacer(),
-              ],
-            )
+                    children: [
+                      const Spacer(),
+                      Row(
+                        children: [
+                          const Spacer(),
+                          Lottie.asset(
+                            "assets/lottie_files/box.json",
+                            height: 300 * o,
+                            width: 300 * o,
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                      const Spacer(),
+                    ],
+                  )
                 : ListView(
                     children: [
                       Column(
@@ -167,8 +167,7 @@ class _CardScreenState extends State<CardScreen> {
                                               child: Text(
                                                 drugsRersult[index].name,
                                                 style: TextStyle(
-                                                  color:
-                                                      AppTheme.dark,
+                                                  color: AppTheme.dark,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 13 * o,
                                                 ),
@@ -285,19 +284,30 @@ class _CardScreenState extends State<CardScreen> {
                                                           children: [
                                                             GestureDetector(
                                                               onTap: () {
-                                                                drugsRersult[index].cardCount--;
-                                                                homeBloc.updateCardDrugs(drugsRersult[index]);
+                                                                drugsRersult[
+                                                                        index]
+                                                                    .cardCount--;
+                                                                homeBloc.updateCardDrugs(
+                                                                    drugsRersult[
+                                                                        index]);
                                                               },
                                                               child: Container(
                                                                 height: 26,
                                                                 width: 26,
-                                                                decoration: BoxDecoration(
-                                                                  color: Colors.blue,
-                                                                  borderRadius: BorderRadius.circular(10),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
                                                                 ),
-                                                                child: const Icon(
+                                                                child:
+                                                                    const Icon(
                                                                   Icons.remove,
-                                                                  color: Colors.white,
+                                                                  color: Colors
+                                                                      .white,
                                                                 ),
                                                               ),
                                                             ),
@@ -325,19 +335,30 @@ class _CardScreenState extends State<CardScreen> {
                                                             const Spacer(),
                                                             GestureDetector(
                                                               onTap: () {
-                                                                drugsRersult[index].cardCount++;
-                                                                homeBloc.updateCardDrugs(drugsRersult[index]);
+                                                                drugsRersult[
+                                                                        index]
+                                                                    .cardCount++;
+                                                                homeBloc.updateCardDrugs(
+                                                                    drugsRersult[
+                                                                        index]);
                                                               },
                                                               child: Container(
                                                                 height: 26,
                                                                 width: 26,
-                                                                decoration: BoxDecoration(
-                                                                  color: Colors.blue,
-                                                                  borderRadius: BorderRadius.circular(10),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
                                                                 ),
-                                                                child: const Icon(
+                                                                child:
+                                                                    const Icon(
                                                                   Icons.add,
-                                                                  color: Colors.white,
+                                                                  color: Colors
+                                                                      .white,
                                                                 ),
                                                               ),
                                                             ),
@@ -347,25 +368,29 @@ class _CardScreenState extends State<CardScreen> {
                                                 const Spacer(),
                                                 GestureDetector(
                                                   onTap: () {
-                                                    setState(() {
-                                                      drugsRersult[index]
-                                                              .favSelected =
-                                                          !drugsRersult[index]
-                                                              .favSelected;
-                                                    });
+                                                  setState(() {
+                                                    drugsRersult[index]
+                                                        .favSelected =
+                                                    !drugsRersult[index]
+                                                        .favSelected;
+                                                  });
+                                                    homeBloc.updateFavDrugs(
+                                                        drugsRersult[index],
+                                                        drugsRersult[index]
+                                                            .favSelected);
                                                   },
-                                                  child:
-                                                      drugsRersult[index].favSelected
-                                                          ? SvgPicture.asset(
-                                                              "assets/icons/like.svg",
-                                                              height: 24 * o,
-                                                              width: 24 * o,
-                                                            )
-                                                          : SvgPicture.asset(
-                                                              "assets/icons/dislike.svg",
-                                                              height: 24 * o,
-                                                              width: 24 * o,
-                                                            ),
+                                                  child: drugsRersult[index]
+                                                          .favSelected
+                                                      ? SvgPicture.asset(
+                                                          "assets/icons/like.svg",
+                                                          height: 24 * o,
+                                                          width: 24 * o,
+                                                        )
+                                                      : SvgPicture.asset(
+                                                          "assets/icons/dislike.svg",
+                                                          height: 24 * o,
+                                                          width: 24 * o,
+                                                        ),
                                                 ),
                                                 SizedBox(
                                                   width: 17 * w,
