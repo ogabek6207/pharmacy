@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pharmacy/src/Utils/utils.dart';
+import 'package:pharmacy/src/app_theme/app_thema.dart';
 import 'package:pharmacy/src/model/auth/accept_model.dart';
 import 'package:pharmacy/src/provider/app_provider.dart';
 import 'package:pharmacy/src/ui/dialog/center_dialog.dart';
@@ -116,7 +117,7 @@ class _PostRequestScreenState extends State<AcceptScreen> {
                       ),
               ),
               decoration: BoxDecoration(
-                color: const Color(0xFF3F8AE0),
+                color: AppTheme.grey,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
