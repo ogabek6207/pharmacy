@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:path/path.dart';
-import 'package:pharmacy/src/model/database/data_base_model.dart';
-
+import 'package:pharmacy/src/model/drugs_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
@@ -9,21 +8,22 @@ class DatabaseHelper {
 
   factory DatabaseHelper() => _instance;
 
-  final String tableNote = 'cardTable';
+  //COLUMN
+  final String tableProduct = 'tableProduct';
+  final String tableFavourite = 'tableFavourite';
   final String columnId = 'id';
   final String columnName = 'name';
   final String columnImage = 'image';
   final String columnPrice = 'price';
   final String columnBasePrice = 'base_price';
-  final String columnManufacturer = 'manufacturer';
+  final String columnDescription = 'description';
   final String columnCount = 'card_count';
-
-     static Database? _db;
+  static Database? _db;
 
   DatabaseHelper.internal();
 
   Future<Database> get db async {
-      if (_db != null) {
+    if (_db != null) {
       return _db!;
     }
     _db = await initDb();
@@ -31,69 +31,84 @@ class DatabaseHelper {
     return _db!;
   }
 
-
   initDb() async {
     String databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'pepgvardiola.db');
+    String path = join(databasesPath, 'login.db');
     var db = await openDatabase(path, version: 1, onCreate: _onCreate);
     return db;
   }
 
   void _onCreate(Database db, int newVersion) async {
-    await db.execute  ('CREATE TABLE $tableNote('
-        '$columnId INTEGER PRIMARY KEY, '
-        '$columnName TEXT, '
-        '$columnImage TEXT, '
-        '$columnPrice REAL, '
-        '$columnBasePrice REAL, '
-        '$columnManufacturer TEXT, '
-        '$columnCount INTEGER)');
+    // user
+    await db.execute(
+      'CREATE TABLE $tableProduct('
+          '$columnId INTEGER PRIMARY KEY, '
+          '$columnName TEXT, '
+          '$columnImage TEXT, '
+          '$columnPrice REAl, '
+          '$columnDescription TEXT, '
+          '$columnCount INTEGER, '
+          '$columnBasePrice REAl)',
+    );
+    await db.execute(
+      'CREATE TABLE $tableFavourite('
+          '$columnId INTEGER PRIMARY KEY, '
+          '$columnName TEXT, '
+          '$columnImage TEXT, '
+          '$columnPrice REAl, '
+          '$columnDescription TEXT, '
+          '$columnCount INTEGER, '
+          '$columnBasePrice REAl)',
+    );
   }
 
-  Future<int> saveProducts(CardDatabaseModel item) async {
+  //user save
+  Future<int> saveProduct(DrugsResult item) async {
     var dbClient = await db;
     var result = await dbClient.insert(
-      tableNote,
+      tableProduct,
       item.toJson(),
     );
     return result;
   }
 
-  Future<List<CardDatabaseModel>> getProduct() async {
+  //user get
+  Future<List<DrugsResult>> getDrugsDatabase() async {
     var dbClient = await db;
-    List<Map> list = await dbClient.rawQuery('SELECT * FROM $tableNote');
-    List<CardDatabaseModel> products = <CardDatabaseModel>[];
+    List<Map> list = await dbClient.rawQuery('SELECT * FROM $tableProduct');
+    List<DrugsResult> products = <DrugsResult>[];
     for (int i = 0; i < list.length; i++) {
-      var items = CardDatabaseModel(
+      var items = DrugsResult(
         id: list[i][columnId],
         name: list[i][columnName],
         image: list[i][columnImage],
-        cardCount: list[i][columnCount],
-        manufacturer: list[i][columnManufacturer],
         price: list[i][columnPrice],
         basePrice: list[i][columnBasePrice],
+        cardCount: list[i][columnCount],
+        description: list[i][columnDescription],
       );
       products.add(items);
     }
     return products;
   }
 
-  Future<int> deleteProducts(int id) async {
+  //user update
+  Future<int> updateProduct(DrugsResult item) async {
     var dbClient = await db;
-    return await dbClient.delete(
-      tableNote,
-      where: '$columnId = ?',
-      whereArgs: [id],
+    return await dbClient.update(
+      tableProduct,
+      item.toJson(),
+      where: "$columnId = ?",
+      whereArgs: [item.id],
     );
   }
 
-  Future<int> updateProduct(CardDatabaseModel products) async {
+  Future<int> deleteProduct(int id) async {
     var dbClient = await db;
-    return await dbClient.update(
-      tableNote,
-      products.toJson(),
-      where: "$columnId = ?",
-      whereArgs: [products.id],
+    return await dbClient.delete(
+      tableProduct,
+      where: '$columnId = ?',
+      whereArgs: [id],
     );
   }
 
@@ -102,8 +117,43 @@ class DatabaseHelper {
     return dbClient.close();
   }
 
-  Future<void> clear() async {
+  ///user FAV
+  Future<List<DrugsResult>> getDrugsFavDatabase() async {
     var dbClient = await db;
-    await dbClient.rawQuery('DELETE FROM $tableNote');
+    List<Map> list = await dbClient.rawQuery('SELECT * FROM $tableFavourite');
+    List<DrugsResult> products = <DrugsResult>[];
+    for (int i = 0; i < list.length; i++) {
+      var items = DrugsResult(
+        id: list[i][columnId],
+        name: list[i][columnName],
+        image: list[i][columnImage],
+        price: list[i][columnPrice],
+        basePrice: list[i][columnBasePrice],
+        description: list[i][columnDescription],
+        favSelected: true,
+      );
+      products.add(items);
+    }
+    return products;
+  }
+
+  ///delete fav
+  Future<int> deleteFavProduct(int id) async {
+    var dbClient = await db;
+    return await dbClient.delete(
+      tableFavourite,
+      where: '$columnId = ?',
+      whereArgs: [id],
+    );
+  }
+
+  ///save fav
+  Future<int> saveFavProduct(DrugsResult item) async {
+    var dbClient = await db;
+    var result = await dbClient.insert(
+      tableFavourite,
+      item.toJson(),
+    );
+    return result;
   }
 }

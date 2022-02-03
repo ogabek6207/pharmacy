@@ -5,12 +5,12 @@ class DrugsModel {
   List<DrugsResult> results;
 
   factory DrugsModel.fromJson(Map<String, dynamic> json) => DrugsModel(
-        count: json["count"] ?? 0,
-        next: json["next"] ?? "",
-        previous: json["previous"] ?? "",
-        results: List<DrugsResult>.from(
-            json["results"].map((x) => DrugsResult.fromJson(x))),
-      );
+    count: json["count"] ?? 0,
+    next: json["next"] ?? "",
+    previous: json["previous"] ?? "",
+    results: List<DrugsResult>.from(
+        json["results"].map((x) => DrugsResult.fromJson(x))),
+  );
 
   DrugsModel({
     required this.count,
@@ -22,7 +22,6 @@ class DrugsModel {
 
 class DrugsResult {
   DrugsResult({
-
     required this.id,
     required this.name,
     required this.image,
@@ -32,6 +31,7 @@ class DrugsResult {
     this.cardCount = 0,
     this.favSelected = false,
   });
+
   int id;
   String name;
   String image;
@@ -42,13 +42,21 @@ class DrugsResult {
   bool favSelected;
 
   factory DrugsResult.fromJson(Map<String, dynamic> json) => DrugsResult(
-        id: json["id"] ?? 0,
-        name: json["name"] ?? "",
-        image: json["image"] ?? "",
-        description: json["description"] ?? "",
-        price: json["price"] ?? 0,
-        basePrice: json["base_price"] ?? 0,
+    id: json["id"] ?? 0,
+    name: json["name"] ?? "",
+    image: json["image"] ?? "",
+    description: json["description"] ?? "",
+    price: json["price"] ?? 0,
+    basePrice: json["base_price"] ?? 0,
+  );
 
-
-      );
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "image": image,
+    "description": description,
+    "price": price,
+    "base_price": basePrice,
+    "card_count": cardCount,
+  };
 }

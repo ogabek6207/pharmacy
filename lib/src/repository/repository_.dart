@@ -3,21 +3,34 @@
 import 'package:pharmacy/src/data_base/database_helper.dart';
 import 'package:pharmacy/src/model/auth/http_result.dart';
 import 'package:pharmacy/src/model/database/data_base_model.dart';
+import 'package:pharmacy/src/model/drugs_model.dart';
 import 'package:pharmacy/src/provider/app_provider.dart';
 
 class Repository {
   final AppProvider _provider = AppProvider();
+
   DatabaseHelper databaseHelper = DatabaseHelper();
 
-  Future<List<CardDatabaseModel>> getProduct() => databaseHelper.getProduct();
+  Future<List<DrugsResult>> getProduct() => databaseHelper.getDrugsDatabase();
+  Future<int> saveProducts(DrugsResult item) =>
+      databaseHelper.saveProduct(item);
 
-  Future<int> saveProducts(CardDatabaseModel item) =>
-      databaseHelper.saveProducts(item);
 
-  Future<int> deleteProducts(int id) => databaseHelper.deleteProducts(id);
+  Future<int> deleteProducts(int id) => databaseHelper.deleteProduct(id);
 
-  Future<int> updateProduct(CardDatabaseModel item) =>
+  Future<int> updateProduct(DrugsResult item) =>
       databaseHelper.updateProduct(item);
+
+
+  ///fav
+  Future<List<DrugsResult>> getFavProduct() => databaseHelper.getDrugsFavDatabase();
+
+  Future<int> saveFavProducts(DrugsResult item) =>
+      databaseHelper.saveFavProduct(item);
+  Future<int> deleteFavProducts(int id) => databaseHelper.deleteFavProduct(id);
+
+
+
 
   Future<HttpResult> getCategory() => _provider.getCategory();
 

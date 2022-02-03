@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharmacy/src/Utils/utils.dart';
 import 'package:pharmacy/src/app_theme/app_thema.dart';
-import 'package:pharmacy/src/bloc/card_bloc.dart';
+import 'package:pharmacy/src/bloc/home_bloc.dart';
 import 'package:pharmacy/src/model/card_model.dart';
-import 'package:pharmacy/src/model/database/data_base_model.dart';
+import 'package:pharmacy/src/model/drugs_model.dart';
 import 'package:pharmacy/src/ui/checkout/self_call_screen.dart';
 import 'package:pharmacy/src/widget/card_widget.dart';
 
@@ -19,7 +19,7 @@ class CardScreen extends StatefulWidget {
 class _CardScreenState extends State<CardScreen> {
   @override
   initState() {
-    cardBloc.getDrugs();
+    homeBloc.getDrugsCard();
     super.initState();
   }
 
@@ -29,10 +29,10 @@ class _CardScreenState extends State<CardScreen> {
     double w = Utils.windowWidth(context);
     double o = (h + w) / 2;
     return StreamBuilder(
-      stream: cardBloc.fetchDrugs,
-      builder: (context, AsyncSnapshot<List<CardDatabaseModel>> snapshot) {
+      stream: homeBloc.fetchCardDrugs,
+      builder: (context, AsyncSnapshot<List<DrugsResult>> snapshot) {
         if (snapshot.hasData) {
-          List<CardDatabaseModel> drugsRersult = snapshot.data!;
+          List<DrugsResult> drugsRersult = snapshot.data!;
           return Scaffold(
             backgroundColor: AppTheme.white,
             appBar: AppBar(
@@ -163,7 +163,7 @@ class _CardScreenState extends State<CardScreen> {
                                               height: 4 * h,
                                             ),
                                             Text(
-                                              drugsRersult[index].manufacturer,
+                                              drugsRersult[index].description,
                                               style: TextStyle(
                                                 color: AppTheme.grey2,
                                                 fontSize: 12 * o,
@@ -356,13 +356,13 @@ class _CardScreenState extends State<CardScreen> {
                                                   onTap: () {
                                                     setState(() {
                                                       drugsRersult[index]
-                                                              .isFav =
+                                                              .favSelected =
                                                           !drugsRersult[index]
-                                                              .isFav;
+                                                              .favSelected;
                                                     });
                                                   },
                                                   child:
-                                                      drugsRersult[index].isFav
+                                                      drugsRersult[index].favSelected
                                                           ? SvgPicture.asset(
                                                               "assets/icons/like.svg",
                                                               height: 24 * o,
