@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pharmacy/src/Utils/utils.dart';
 import 'package:pharmacy/src/app_theme/app_thema.dart';
+import 'package:pharmacy/src/bloc/home_bloc.dart';
 import 'package:pharmacy/src/model/drugs_model.dart';
 import 'package:pharmacy/src/ui/checkout/courier/by_courier_after_screen.dart';
 import 'package:pharmacy/src/ui/checkout/order_screen.dart';
@@ -13,9 +14,9 @@ class BottomDialog {
   static void drugsDialog(
     BuildContext context,
     DrugsResult data,
+
     List<DrugsResult> info,
   ) {
-    bool like = false;
     bool c = true;
     bool k = false;
 
@@ -98,10 +99,11 @@ class BottomDialog {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  like = !like;
+                                  data.favSelected = !data.favSelected;
                                 });
+                                homeBloc.updateFavDrugs(data, data.favSelected);
                               },
-                              child: like
+                              child: data.favSelected
                                   ? SvgPicture.asset("assets/icons/like.svg")
                                   : SvgPicture.asset(
                                       "assets/icons/dislike.svg"),
@@ -443,6 +445,7 @@ class BottomDialog {
                                       itemCount: info.length,
                                       itemBuilder: (context, index) {
                                         return ItemHorizontalWidget(
+                                            key: Key(info[index].cardCount.toString()),
                                             data: info[index]);
                                       },
                                     ),
@@ -477,7 +480,10 @@ class BottomDialog {
                             scrollDirection: Axis.horizontal,
                             itemCount: info.length,
                             itemBuilder: (context, index) {
-                              return ItemHorizontalWidget(data: info[index]);
+                              return ItemHorizontalWidget(
+
+                                  key:  Key(info[index].cardCount.toString()),
+                                  data:info[index]);
                             },
                           ),
                         ),
@@ -491,9 +497,9 @@ class BottomDialog {
                         data.cardCount <= 0
                             ? GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    data.cardCount++;
-                                  });
+
+                                  data.cardCount++;
+                                  homeBloc.updateCardDrugs(data);
                                 },
                                 child: Container(
                                   height: 44,
@@ -520,9 +526,8 @@ class BottomDialog {
                                   SizedBox(width: 12 * w),
                                   GestureDetector(
                                     onTap: () {
-                                      setState(() {
-                                        data.cardCount--;
-                                      });
+                                      data.cardCount--;
+                                      homeBloc.updateCardDrugs(data);
                                     },
                                     child: Container(
                                       height: 36 * o,
@@ -554,6 +559,8 @@ class BottomDialog {
                                       setState(() {
                                         data.cardCount++;
                                       });
+
+                                      homeBloc.updateCardDrugs(data);
                                     },
                                     child: Container(
                                       height: 26,

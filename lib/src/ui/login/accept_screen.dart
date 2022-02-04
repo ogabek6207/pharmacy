@@ -28,6 +28,8 @@ class _PostRequestScreenState extends State<AcceptScreen> {
   bool loading = false;
 
   @override
+
+
   Widget build(BuildContext context) {
     double h = Utils.windowHeight(context);
     double w = Utils.windowWidth(context);
@@ -117,7 +119,7 @@ class _PostRequestScreenState extends State<AcceptScreen> {
                       ),
               ),
               decoration: BoxDecoration(
-                color: AppTheme.grey,
+                color: AppTheme.blue,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),

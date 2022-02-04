@@ -73,7 +73,7 @@ class HomeBloc {
   }
 
   ///fav
-    updateFavDrugs(
+      updateFavDrugs(
       DrugsResult data,
       bool like,
       ) async {
@@ -103,6 +103,7 @@ class HomeBloc {
       _repository.updateProduct(data);
     }
     List<DrugsResult> database = await _repository.getProduct();
+    drugsFetch.sink.add(result!);
     drugsCardFetch.sink.add(database);
   }
 

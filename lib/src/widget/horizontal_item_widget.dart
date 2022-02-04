@@ -39,6 +39,10 @@ class _ItemHorizontalWidgetState extends State<ItemHorizontalWidget> {
               ),
               GestureDetector(
                 onTap: () {
+                  //
+                  // setState(() {
+                  //   widget.data.favSelected =  !widget.data.favSelected;
+                  // });
                   homeBloc.updateFavDrugs(
                     widget.data,
                     !widget.data.favSelected,
@@ -46,8 +50,7 @@ class _ItemHorizontalWidgetState extends State<ItemHorizontalWidget> {
                 },
                 child: widget.data.favSelected
                     ? SvgPicture.asset(
-                  "assets/icons/dislike.svg",
-                  color: Colors.red,
+                  "assets/icons/like.svg",
                 )
                     : SvgPicture.asset(
                   "assets/icons/dislike.svg",
